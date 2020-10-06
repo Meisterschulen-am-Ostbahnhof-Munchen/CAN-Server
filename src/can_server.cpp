@@ -614,8 +614,7 @@ bool handleCommand(__HAL::server_c* pc_serverData, std::list<__HAL::client_c>::i
         } else {
           // reconfigure element
         }
-        // break left out intentionally
-
+        // fall through
       case COMMAND_CHG_CONFIG:
 
         if ((p_writeBuf->s_config.ui8_bus > HAL_CAN_MAX_BUS_NR ) || ( p_writeBuf->s_config.ui8_obj > iter_client->canBus(p_writeBuf->s_config.ui8_bus).mvec_msgObj.size()-1 ))
