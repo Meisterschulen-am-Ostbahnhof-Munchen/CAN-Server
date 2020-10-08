@@ -8,10 +8,8 @@ if(NOT CMAKE_BUILD_TYPE)
       FORCE)
 endif(NOT CMAKE_BUILD_TYPE)
 
-project(CAN_SERVER_SOCKET_PCAN)
+project(CAN_SERVER_PCAN)
 
-add_definitions(
-  -DCAN_DRIVER_SOCKET)
 
 set(ISOAGLIB_ADDITIONAL_RELEASE_DEFINITIONS "-DDEBUG_CANSERVER=0")
 set(ISOAGLIB_ADDITIONAL_DEBUG_DEFINITIONS "-DDEBUG_CANSERVER=1")
@@ -23,29 +21,28 @@ set(CMAKE_CXX_FLAGS_MINSIZEREL "${CMAKE_CXX_FLAGS_MINSIZEREL} ${ISOAGLIB_ADDITIO
 
 include_directories(
   ../../src
-  ../../../../library/xgpl_src/IsoAgLib/hal/pc/can
-  ../../../../library/xgpl_src)
+  )
 
 if(WIN32)
   include_directories(
-    ../../../../tools/libs/pthread/include
-    ../../../libs/pcan/Include)
+    ../../3rd/lib/pthread/include
+    ../../3rd/lib/pcan/Include
+    ../../3rd/src/yasper/)
 
   find_package(Threads REQUIRED)
   link_directories(
-    ../../../../tools/libs/pthread/lib
-    ../../../libs/pcan/Win32/VC_LIB)
+    "../../3rd/lib/pthread/lib"
+    ../../3rd/lib/pcan/Win32/VC_LIB)
   set(ISOAGLIB_ADDITIONAL_LIBRARIES odbc32 odbccp32 winmm pthreadVC2 ws2_32 PCANBasic)
 else()
   set(ISOAGLIB_ADDITIONAL_LIBRARIES rt)
 endif(WIN32)
 
 add_executable(
-  can_server_socket_pcan
-  ../../src/can_server_interface_server.cpp
+  CAN-Server_pcan
   ../../src/can_server_common.cpp
-  ../../src/can_server_sock.cpp
+  ../../src/can_server.cpp
   ../../src/can_filtering.cpp
-  ../../src/devices/can_device_pcan.cpp)
+  ../../src_devices/pcan/can_device_pcan.cpp)
 
-target_link_libraries(can_server_socket_pcan ${ISOAGLIB_ADDITIONAL_LIBRARIES})
+target_link_libraries(CAN-Server_pcan ${ISOAGLIB_ADDITIONAL_LIBRARIES})
