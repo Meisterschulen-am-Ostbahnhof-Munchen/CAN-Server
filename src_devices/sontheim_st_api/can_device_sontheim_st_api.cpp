@@ -501,8 +501,7 @@ bool openBusOnCard(uint8_t ui8_bus, uint32_t wBitrate, server_c* pc_serverData)
     }
 
     ss_canDevice.canBus(ui8_bus).mb_canBusIsOpen = true;
-    pc_serverData->canBus(ui8_bus).mb_deviceConnected = true;
-	return true;
+    return true;
   }
   else
     return true; // already initialized and files are already open

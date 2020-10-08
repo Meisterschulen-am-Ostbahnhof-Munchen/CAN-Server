@@ -10,8 +10,6 @@ endif(NOT CMAKE_BUILD_TYPE)
 
 project(CAN_SERVER_VECTOR_XL)
 
-add_definitions(
-  -DCAN_DRIVER_SOCKET)
 
 if(WIN32)
   add_definitions(-DSYSTEM_PC_VC)
@@ -27,20 +25,20 @@ set(CMAKE_CXX_FLAGS_MINSIZEREL "${CMAKE_CXX_FLAGS_MINSIZEREL} ${ISOAGLIB_ADDITIO
 
 include_directories(
   ../../src
-  ../../../../library/xgpl_src/IsoAgLib/hal/pc/can
-  ../../../../library/xgpl_src)
+  )
 
 if(WIN32)
   add_definitions(
     -DHAVE_STRUCT_TIMESPEC=1)
 
   include_directories(
-    ../../../../tools/libs/pthread/include
-    "C:/Programme/XL Driver Library/bin")
+    ../../3rd/lib/pthread/include
+    "C:/Programme/XL Driver Library/bin"
+    ../../3rd/src/yasper/)
 
   find_package(Threads REQUIRED)
   link_directories(
-    ../../../../tools/libs/pthread/lib
+    "../../3rd/lib/pthread/lib"
     "C:/Programme/XL Driver Library/bin")
   set(ISOAGLIB_ADDITIONAL_LIBRARIES odbc32 odbccp32 winmm pthreadVC2 ws2_32 vxlapi)
 else()
@@ -48,11 +46,10 @@ else()
 endif(WIN32)
 
 add_executable(
-  can_server_vector_xl
-  ../../src/can_server_interface_server.cpp
+  CAN-Server_vector_xl
   ../../src/can_server_common.cpp
-  ../../src/can_server_sock.cpp
+  ../../src/can_server.cpp
   ../../src/can_filtering.cpp
-  ../../src/devices/can_device_vector_xl.cpp)
+  ../../src_devices/vector_xl/can_device_vector_xl.cpp)
 
-target_link_libraries(can_server_vector_xl ${ISOAGLIB_ADDITIONAL_LIBRARIES})
+target_link_libraries(CAN-Server_vector_xl ${ISOAGLIB_ADDITIONAL_LIBRARIES})
