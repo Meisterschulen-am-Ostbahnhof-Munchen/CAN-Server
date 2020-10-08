@@ -250,7 +250,6 @@ bool openBusOnCard(uint8_t ui8_bus, uint32_t wBitrate, server_c* pc_serverData)
       if (vErr) goto error;
     }
     ss_canDevice.canBus(ui8_bus).mb_canBusIsOpen = true;
-    pc_serverData->canBus(ui8_bus).mb_deviceConnected = true;
   }
   
   // either fresh init without error or the bus was already initialized
