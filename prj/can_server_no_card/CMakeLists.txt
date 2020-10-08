@@ -8,10 +8,8 @@ if(NOT CMAKE_BUILD_TYPE)
       FORCE)
 endif(NOT CMAKE_BUILD_TYPE)
 
-project(CAN_SERVER_SOCKET_NO_CARD)
+project(CAN_SERVER_NO_CARD)
 
-add_definitions(
-  -DCAN_DRIVER_SOCKET)
 
 set(ISOAGLIB_ADDITIONAL_RELEASE_DEFINITIONS "-DDEBUG_CANSERVER=0")
 set(ISOAGLIB_ADDITIONAL_DEBUG_DEFINITIONS "-DDEBUG_CANSERVER=1")
@@ -23,24 +21,23 @@ set(CMAKE_CXX_FLAGS_MINSIZEREL "${CMAKE_CXX_FLAGS_MINSIZEREL} ${ISOAGLIB_ADDITIO
 
 include_directories(
   ../../src
-  ../../../../library/xgpl_src/IsoAgLib/hal/pc/can
-  ../../../../library/xgpl_src)
+  )
 
 if(WIN32)
-  include_directories(../../../../tools/libs/pthread/include)
+  include_directories(../../3rd/lib/pthread/include)
+  include_directories(../../3rd/src/yasper/)
   find_package(Threads REQUIRED)
-  link_directories("../../../../tools/libs/pthread/lib")
+  link_directories("../../3rd/lib/pthread/lib")
   set(ISOAGLIB_ADDITIONAL_LIBRARIES odbc32 odbccp32 winmm pthreadVC2 ws2_32)
 else()
   set(ISOAGLIB_ADDITIONAL_LIBRARIES rt pthread)
 endif(WIN32)
 
 add_executable(
-  can_server_socket_no_card
-  ../../src/can_server_interface_server.cpp
+  CAN-Server_no_card
   ../../src/can_server_common.cpp
-  ../../src/can_server_sock.cpp
+  ../../src/can_server.cpp
   ../../src/can_filtering.cpp
-  ../../src/devices/can_device_no_card.cpp)
+  ../../src_devices/no_card/can_device_no_card.cpp)
 
-target_link_libraries(can_server_socket_no_card ${ISOAGLIB_ADDITIONAL_LIBRARIES})
+target_link_libraries(CAN-Server_no_card ${ISOAGLIB_ADDITIONAL_LIBRARIES})

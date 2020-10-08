@@ -961,7 +961,7 @@ namespace __HAL {
     // IP address, and port for the socket that is being bound.
     sockaddr_in service;
     service.sin_family = AF_INET;
-    service.sin_addr.s_addr = inet_addr(CAN_SERVER_HOST);
+    service.sin_addr.s_addr = inet_addr("127.0.0.1");
     service.sin_port = htons(portnum);
 
     // Bind the socket.

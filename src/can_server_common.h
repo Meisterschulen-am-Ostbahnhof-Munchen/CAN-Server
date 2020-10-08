@@ -15,12 +15,19 @@
 #ifndef _CAN_SERVER_COMMON_H_
 #define _CAN_SERVER_COMMON_H_
 
+// Version >= Microsoft Visual Studio C++ 2015
+// fix broken pthread.h (that defines timespec on its own, which may result in double definition)
+#if _MSC_VER >= 1900
+  #ifndef HAVE_STRUCT_TIMESPEC
+    #define HAVE_STRUCT_TIMESPEC
+  #endif
+#endif
 #include <pthread.h>
 #include <stdio.h>
 #include <string>
 #include <list>
 
-#include <interface/can_server_interface.h>
+#include "can_server_interface.h"
 #include <yasper.h>
 
 #define MAJOR 2
