@@ -159,9 +159,6 @@ typedef int32_t ecutime_t;
   #define SOCKET_TYPE_INET_OR_UNIX AF_INET
 #endif
 
-#ifdef CAN_DRIVER_SOCKET
-  #define CAN_SERVER_HOST "127.0.0.1"
-#endif
 
 #ifdef WIN32
   typedef SOCKET SOCKET_TYPE;
@@ -285,14 +282,12 @@ struct transferBuf_s {
       uint16_t ui16_wBitrate;
       uint16_t ui16_fill2;
     } s_init;
-#ifdef CAN_DRIVER_SOCKET
     struct {
       struct canMsg_s s_canMsg;
       uint8_t  ui8_bus;
       uint8_t  ui8_obj;
       ecutime_t  i32_sendTimeStamp;
     } s_data;
-#endif
   };
   transferBuf_s() {
     memset(this, 0, sizeof *this);
@@ -305,16 +300,12 @@ struct client_c
 public:
   client_c();
 
-#ifdef CAN_DRIVER_SOCKET
   SOCKET_TYPE  i32_commandSocket;
   SOCKET_TYPE  i32_dataSocket;
-#endif
 
   uint16_t ui16_pid;
   int32_t  i32_msecStartDeltaClientMinusServer;
 
-  //typedef STL_NAMESPACE::vector<tMsgObj> ArrMsgObj;
-  //ArrMsgObj arrMsgObj[cui32_maxCanBusCnt];
 
   struct canBus_s {
     std::vector<tMsgObj>    mvec_msgObj;
