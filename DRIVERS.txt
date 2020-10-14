@@ -1,36 +1,39 @@
+IMPORTANT:
+----------
+
+Make sure the CAN device driver itself is installed, and for building the corresponding
+CAN-Server make sure that the driver library (.h/.lib) is installed
+and the .dll is copied to where the binary lies/is executed.
+
+
 For the PEAK PCAN driver read 3rd/lib/pcan/README.txt .
 
-For the Sontheim driver download the MT-API from the download center at
+
+For the Sontheim driver library download the MT-API from the download center at
 	https://www.sontheim-industrie-elektronik.de/de/support/downloads/mt-api-treiber/
 and run the contained installation program. Install to
     C:\Programme\Sontheim\MT_Api .
 If it's already installed in a different path, then adapt
     can_server_sontheim_mt.vcproj .
 
-The following version "Vector" is old (use the CAN-Server_Vector_xl instead):
-For the Vector driver library download
-    http://www.vector-worldwide.com/downloads/drivers/canlib43.zip
-and run the contained setup program. Install to
-    c:\Programme\CANLIB .
-If it's already installed in a different path, then adapt
-    can_server_vector.vcproj .
-If neccessary, disable the SAFESEH option of the project in Debug/Release.
-
+	
 For the Vector XL driver library download
     https://vector.com/vi_downloadcenter_en.html?type=Driver&formular_treffer_submit=1
-and run the contained setup program. Install the CanXL driver to
-    C:\Programme\XL Driver Library .
+and run the contained setup program. Install the CanXL driver to default, which is
+    C:/Users/Public/Documents/Vector XL Driver Library .
 If it's already installed in a different path, then adapt
     can_server_vector_xl.vcproj .
 
-For the LAWICEL driver download
+	
+For the LAWICEL driver (library) download
     http://www.canusb.com/drivers/canusbdrv018.zip
 and
     http://www.canusb.com/cdm/CDM_2.04.06_CANUSB.zip
 
 Follow the driver installation guide
     http://www.canusb.com/documents/canusb_drinst_vcp.pdf
-When reading, particularly find out if you have to temporarily
+When
+ reading, particularly find out if you have to temporarily
 disconnect the PC from the Internet during installation.
 Eventually install to
     C:\Programme\LAWICEL\CANUSB .
