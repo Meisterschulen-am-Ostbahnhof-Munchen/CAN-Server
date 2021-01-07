@@ -259,56 +259,6 @@ bool openBusOnCard(uint8_t ui8_bus, uint32_t  wBitrate , server_c* pc_serverData
       return false;
     }
   }
-  /*switch(EMCBSetChannelValue(ui8_bus, EMCB_IID_BUS_STATUS, EMCB_BUS_STATUS_NORMAL))
-  {
-    case EMCB_STATUS_SUCCESS:
-    {
-      //Success -> Do nothing and continue
-
-    }
-    break;
-    case EMCB_STATUS_NOT_INITIALIZED:
-    {
-      printf("The EMCB library has not been initialized => Either the initialization failed or there hasn't been any call to the initialization method for this CAN bus (line %d)\n", __LINE__);
-      return false;
-    }
-    break;
-    case EMCB_STATUS_INVALID_PARAMETER:
-    {
-      printf("A parameter passed to a EMCB-API function has been invalid => Different library version? (line %d)\n", __LINE__);
-      return false;
-    }
-    break;
-    case EMCB_STATUS_UNSUPPORTED:
-    {
-      printf("Could not set status for CAN channel %d => Invalid channel or changed library version? (line %d)\n", ui8_bus, __LINE__);
-      return false;
-    }
-    break;
-    case EMCB_STATUS_WRITE_ERROR:
-    {
-      printf("Could not set status for channel %d due to a write error! => Disconnected? (line %d)\n", ui8_bus, __LINE__);
-      return false;
-    }
-    break;
-    case EMCB_STATUS_TIMEOUT:
-    {
-      printf("The status could not be set for channel %d due to a communication timeout! (line %d)\n", ui8_bus, __LINE__);
-      return false;
-    }
-    break;
-    case EMCB_STATUS_ERROR:
-    {
-      printf("Unknown error after call to EMCB-API function in line %d!\n", __LINE__);
-      return false;
-    }
-    break;
-    default:
-    {
-      printf("Unknown (and unspecified) error after call to EMCB-API function in line %d! Changed library version?\n", __LINE__);
-      return false;
-    }
-  }*/
   switch(EMCBSetChannelValue(ui8_bus, EMCB_IID_BUS_MODE, EMCB_MODE_NORMAL))
   {
     case EMCB_STATUS_SUCCESS:
