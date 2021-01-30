@@ -39,3 +39,8 @@ Eventually install to
     C:\Programme\LAWICEL\CANUSB .
 If it's already installed in a different path, then adapt
     can_server_lawicel.vcproj .
+
+To use the CAN-Server with the Advantech-Dongle:
+
+Download the EMCB DLL from https://www.advantech.com/support/details/software-api?id=1-T2RQ23 (the DLL is contained in the folder)
+and put it into the folder where the CAN Server application is located.

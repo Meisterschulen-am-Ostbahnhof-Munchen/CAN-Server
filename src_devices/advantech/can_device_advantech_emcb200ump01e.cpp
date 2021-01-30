@@ -429,7 +429,7 @@ int16_t sendToBus(uint8_t ui8_bus, canMsg_s* ps_canMsg, server_c* pc_serverData)
   {
     case EMCB_STATUS_SUCCESS:
     {
-      return 1;
+       return 1;
     }
     break;
     case EMCB_STATUS_NOT_INITIALIZED:
