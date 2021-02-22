@@ -501,6 +501,9 @@ bool readFromBus(uint8_t ui8_bus, canMsg_s* ps_canMsg, server_c* pc_serverData)
   UINT32 retVal;
   UINT32 id;
 
+  // tell the driver that our buffer has 8 bytes, to avoid EMCB_STATUS_MORE_DATA
+  dlc = 8;
+
   retVal = EMCBMsgRx((BYTE)ui8_bus, &id, &eid, &rtr, (BYTE*)(ps_canMsg->ui8_data), &dlc);
 
   switch(retVal)
@@ -559,9 +562,14 @@ bool readFromBus(uint8_t ui8_bus, canMsg_s* ps_canMsg, server_c* pc_serverData)
     break;
     case EMCB_STATUS_NO_DATA:
     {
-        return false;
+      return false;
     }
     break;
+    case EMCB_STATUS_MORE_DATA:
+    {
+      printf("Should not happen, but: Receiving more than 8 databytes on a buffer with 8 databytes only on CAN channel %d! (line %d)\n", ui8_bus, __LINE__);
+      return false;
+    }
     default:
     {
       printf("Unknown (and unspecified) error when trying to read from CAN channel %d! (line %d)\n", ui8_bus, __LINE__);
