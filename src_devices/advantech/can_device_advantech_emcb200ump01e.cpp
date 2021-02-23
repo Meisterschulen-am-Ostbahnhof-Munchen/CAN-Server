@@ -2,7 +2,7 @@
 #include "EMCB.h"
 
 #define HARDWARE "Advantech EMCB200U-MP01E"
-#define HARDWARE_PATCH 0
+#define HARDWARE_PATCH 1
 
 #define ADV_EXTENDED_FRAME 1
 #define ADV_STANDARD_FRAME 0
