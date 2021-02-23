@@ -161,6 +161,7 @@ bool openBusOnCard(uint8_t ui8_bus, uint32_t  wBitrate , server_c* pc_serverData
       return false;
     }
   }
+
   switch(EMCBSetChannelValue(ui8_bus, EMCB_IID_BUS_SPEED, wBitrate))
   {
       case EMCB_STATUS_SUCCESS:
@@ -210,7 +211,10 @@ bool openBusOnCard(uint8_t ui8_bus, uint32_t  wBitrate , server_c* pc_serverData
           return false;
       }
   }
-  switch(EMCBSetChannelValue(ui8_bus, EMCB_IID_TERMINAL_RES, 0))
+
+// define not set per default, just leave termination setting untouched in device. (it's stored in device)
+#ifdef CAN_DEVICE_ADVANTECH_TERMINAL_RES
+  switch(EMCBSetChannelValue(ui8_bus, EMCB_IID_TERMINAL_RES, CAN_DEVICE_ADVANTECH_TERMINAL_RES))
   {
     case EMCB_STATUS_SUCCESS:
     {
@@ -259,6 +263,8 @@ bool openBusOnCard(uint8_t ui8_bus, uint32_t  wBitrate , server_c* pc_serverData
       return false;
     }
   }
+#endif
+
   switch(EMCBSetChannelValue(ui8_bus, EMCB_IID_BUS_MODE, EMCB_MODE_NORMAL))
   {
     case EMCB_STATUS_SUCCESS:
@@ -308,6 +314,7 @@ bool openBusOnCard(uint8_t ui8_bus, uint32_t  wBitrate , server_c* pc_serverData
       return false;
     }
   }
+
   switch(EMCBSetChannelValue(ui8_bus, EMCB_IID_RXB0_MODE, EMCB_BUF_MODE_BOTH))
   {
     case EMCB_STATUS_SUCCESS:
@@ -357,6 +364,7 @@ bool openBusOnCard(uint8_t ui8_bus, uint32_t  wBitrate , server_c* pc_serverData
       return false;
     }
   }
+
   switch(EMCBSetChannelValue(ui8_bus, EMCB_IID_RXB1_MODE, EMCB_BUF_MODE_BOTH))
   {
     case EMCB_STATUS_SUCCESS:
