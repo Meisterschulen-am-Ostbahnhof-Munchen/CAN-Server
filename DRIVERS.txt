@@ -10,7 +10,7 @@ For the PEAK PCAN driver read 3rd/lib/pcan/README.txt .
 
 
 For the Sontheim driver library download the MT-API from the download center at
-	https://www.sontheim-industrie-elektronik.de/de/support/downloads/mt-api-treiber/
+	https://www.sontheim-industrie-elektronik.de/de/support/downloads/mt-api-/-treiber/
 and run the contained installation program. Install to
     C:\Programme\Sontheim\MT_Api .
 If it's already installed in a different path, then adapt
@@ -18,7 +18,8 @@ If it's already installed in a different path, then adapt
 
 	
 For the Vector XL driver library download
-    https://vector.com/vi_downloadcenter_en.html?type=Driver&formular_treffer_submit=1
+    https://www.vector.com/int/en/search?type=%5B%22downloads%22%5D&page=1&q=XL%20Driver%20Library&pageSize=50&sort=date&order=desc&
+and run the contained setup program. Install the CanXL driver to default, which is
 and run the contained setup program. Install the CanXL driver to default, which is
     C:/Users/Public/Documents/Vector XL Driver Library .
 If it's already installed in a different path, then adapt
@@ -26,12 +27,12 @@ If it's already installed in a different path, then adapt
 
 	
 For the LAWICEL driver (library) download
-    http://www.canusb.com/drivers/canusbdrv018.zip
+    http://www.can232.com/download/canusbdrv018.zip
 and
-    http://www.canusb.com/cdm/CDM_2.04.06_CANUSB.zip
+    http://www.can232.com/download/CDM_2.04.16_CANUSB.zip
 
 Follow the driver installation guide
-    http://www.canusb.com/documents/canusb_drinst_vcp.pdf
+    https://www.vctec.co.kr/web/product/lawicel/documents/canusb_drinst_vcp.pdf
 When
  reading, particularly find out if you have to temporarily
 disconnect the PC from the Internet during installation.
