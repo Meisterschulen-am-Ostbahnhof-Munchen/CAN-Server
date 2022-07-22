@@ -74,13 +74,13 @@ void checkAndHandleOptionsAndStartup(int argc, char *argv[], __HAL::server_c &ar
 #endif
 
   if (ar_server.mb_interactive) {
-    std::cerr << "IsoAgLib CAN-Server" << std::endl;
+    std::cerr << "CAN-Server" << std::endl;
     std::cerr << "Version " << MAJOR    << "."
                             << MINOR    << "."
                             << PATCH    << " " 
                             << getHardware() << "."
                             << getHardwarePatch() << std::endl;
-    std::cerr << "(Run with '--help' to get help)" << std::endl << std::endl;
+    std::cerr << "('--help' gets help) - ATTENTION: Monitoring might affect performance/timings!" << std::endl << std::endl;
     printSettings (ar_server);
   }
 
@@ -177,7 +177,7 @@ void *readUserInput( void *ap_arg )
       std::string s_toEnable;
       istr_inputLine >> s_toEnable;
       if (!s_toEnable.compare( s_monitor )) {
-        std::cerr << "Enabling monitoring." << std::endl;
+        std::cerr << "Enabling monitoring. (ATTENTION: Might affect performance/timings!)" << std::endl;
         pc_serverData->mb_monitorMode = true;
       } else if (!s_toEnable.compare( s_log )) {
         istr_inputLine >> pc_serverData->mstr_logFileBase;
