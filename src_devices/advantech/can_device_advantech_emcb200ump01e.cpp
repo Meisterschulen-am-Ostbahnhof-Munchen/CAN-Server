@@ -1,3 +1,11 @@
+/*
+  can_device_advantech_emcb200ump01e.cpp: Interface for Advantech CAN device
+
+  (C) Copyright 2009 - 2022 by OSB connagtive GmbH
+
+  Use, modification and distribution are subject to the GNU General
+  Public License, see accompanying file LICENSE.txt
+*/
 #include "can_server_common.h"
 #include "EMCB.h"
 

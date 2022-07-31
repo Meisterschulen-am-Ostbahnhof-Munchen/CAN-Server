@@ -1,6 +1,6 @@
 =============================== COMMON ===============================
 
-2018-05-14 Version 2.1.0    Julian Fichtner     (j.fichtner@osb-ag.de)
+2018-05-14 Version 2.1.0    Julian Fichtner     julian.fichtner@osb-connagtive.com
 
 	* Added a version labeling. Started with version 2.1.0
 		~ can_server_common.h / .cpp

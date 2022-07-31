@@ -1,17 +1,11 @@
 /*
-  can_device_sontheim_mt_api.cpp: interface for SONTHEIM can card
-    (multi thread API)
+  can_device_sontheim_mt_api.cpp: Interface for SONTHEIM CAN card (multi thread API)
 
-  (C) Copyright 2009 - 2019 by OSB AG and developing partners
-
-  See the repository-log for details on the authors and file-history.
-  (Repository information can be found at <http://isoaglib.com/download>)
+  (C) Copyright 2009 - 2022 by OSB connagtive GmbH
 
   Use, modification and distribution are subject to the GNU General
-  Public License with exceptions for ISOAgLib. (See accompanying
-  file LICENSE.txt or copy at <http://isoaglib.com/download/license>)
+  Public License, see accompanying file LICENSE.txt
 */
-
 #if !defined(WIN32)
 typedef int HINSTANCE;
 #endif

@@ -1,16 +1,11 @@
 /*
-  can_device_no_card.cpp: dummy interface when no can device is present
+  can_device_no_card.cpp: Interface when no CAN device is present
 
-  (C) Copyright 2009 - 2019 by OSB AG and developing partners
-
-  See the repository-log for details on the authors and file-history.
-  (Repository information can be found at <http://isoaglib.com/download>)
+  (C) Copyright 2009 - 2022 by OSB connagtive GmbH
 
   Use, modification and distribution are subject to the GNU General
-  Public License with exceptions for ISOAgLib. (See accompanying
-  file LICENSE.txt or copy at <http://isoaglib.com/download/license>)
+  Public License, see accompanying file LICENSE.txt
 */
-
 #include "can_server_common.h"
 
 #define HARDWARE "No Card"

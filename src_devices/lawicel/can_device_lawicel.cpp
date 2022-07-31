@@ -1,16 +1,11 @@
 /*
-  can_device_lawicel.cpp: interface for LAWICEL CANUS
+  can_device_lawicel.cpp: Interface for LAWICEL CANUSB
 
-  (C) Copyright 2009 - 2019 by OSB AG and developing partners
-
-  See the repository-log for details on the authors and file-history.
-  (Repository information can be found at <http://isoaglib.com/download>)
+  (C) Copyright 2009 - 2022 by OSB connagtive GmbH
 
   Use, modification and distribution are subject to the GNU General
-  Public License with exceptions for ISOAgLib. (See accompanying
-  file LICENSE.txt or copy at <http://isoaglib.com/download/license>)
+  Public License, see accompanying file LICENSE.txt
 */
-
 #include "can_server_common.h"
 
 // system/drivers
