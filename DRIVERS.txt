@@ -45,3 +45,27 @@ To use the CAN-Server with the Advantech-Dongle:
 
 Download the EMCB DLL from https://www.advantech.com/support/details/software-api?id=1-T2RQ23 (the DLL is contained in the folder)
 and put it into the folder where the CAN Server application is located.
+
+
+For the Kvaser Mini PCI Express HS v2 drivers:
+
+- Windows:
+  download the installation package kvaser_drivers_setup.exe from
+  https://www.kvaser.com/download/?utm_source=software&utm_ean=7330130980013&utm_status=latest
+  and run it
+
+- Linux:
+  system requirements:
+    - Linux 2.6.29 or later
+    - header files and compiler for kernel compilation
+      - in Ubuntu: sudo apt-get install build-essential
+      - in other systems: sudo apt-get install linux-headers-`uname -r`
+  drivers download:
+    - wget --content-disposition "https://www.kvaser.com/downloads-kvaser/?utm_source=software&utm_ean=7330130980754&utm_status=latest"
+    - tar xvzf linuxcan.tar.gz
+    - cd linuxcan
+    - make
+    - sudo make install (this will install the drivers and "canlib", necessary to build the specific version of the CAN-Server)
+    - sudo make load    (will cause the virtual and PCI drivers to be loaded at boot time. This might be bad if experimenting with the device drivers)
+
+For more info, check the documentation included in the SDK: https://www.kvaser.com/download/?utm_source=software&utm_ean=7330130980150&utm_status=latest
