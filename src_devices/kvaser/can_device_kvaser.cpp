@@ -117,7 +117,7 @@ static canStatus getAvailableChannels(int& numberOfChannels)
 
         status = canGetChannelData(i, canCHANNELDATA_CHAN_NO_ON_CARD, &channelNumberOnCard, sizeof(channelNumberOnCard));
         printErrorStatus((char*)"canGetChannelData", status);
-        DEBUG_PRINT1("Channel number on card: %s\n", channelNumberOnCard);
+        DEBUG_PRINT1("Channel number on card: %d\n", channelNumberOnCard);
 
         status = canGetChannelData(i, canCHANNELDATA_CARD_TYPE, &cardType, sizeof(cardType));
         printErrorStatus((char*)"canGetChannelData", status);
@@ -252,6 +252,8 @@ bool openBusOnCard(uint8_t ui8_bus, uint32_t wBitrate, server_c* pc_serverData)
             return false;
         }
 
+        DEBUG_PRINT1("CAN bus channel bitrate %d kb/s\n", wBitrate);
+
         status = canBusOn(channelHandle);
 
         if (status != canOK)
@@ -263,7 +265,7 @@ bool openBusOnCard(uint8_t ui8_bus, uint32_t wBitrate, server_c* pc_serverData)
 
         ss_canDevice.canBus(ui8_bus).mb_canBusIsOpen = true;
         ss_canDevice.canBus(ui8_bus).mi_channelHandle = channelHandle;
-        DEBUG_PRINT1("Opened CAN bus channel %d\n", ui8_bus);
+        DEBUG_PRINT2("Opened CAN bus channel %d, handle %d\n", (int)ui8_bus, (int)ss_canDevice.canBus(ui8_bus).mi_channelHandle);
 
         return true;
     }
@@ -309,11 +311,11 @@ void closeBusOnCard(uint8_t ui8_bus, server_c* pc_serverData)
 //          0 on error
 int16_t sendToBus(uint8_t ui8_bus, canMsg_s* ps_canMsg, server_c* pc_serverData)
 {
-    canStatus           status;
-    const unsigned char payloadSize = sizeof(ps_canMsg->ui8_data) / sizeof(ps_canMsg->ui8_data[0]);
-          unsigned char payload[payloadSize];
+    canStatus            status;
+    const unsigned char  payloadMaxSize = sizeof(ps_canMsg->ui8_data) / sizeof(ps_canMsg->ui8_data[0]);
+    static unsigned char payload[payloadMaxSize];
 
-    for (unsigned int i = 0; i < payloadSize; i++)
+    for (int i = 0; i < ps_canMsg->i32_len; i++)
     {
         payload[i] = ps_canMsg->ui8_data[i];
     }
@@ -329,8 +331,8 @@ int16_t sendToBus(uint8_t ui8_bus, canMsg_s* ps_canMsg, server_c* pc_serverData)
     {
         return 1;
     }*/
-    status = ps_canMsg->i32_msgType ? canWrite(ss_canDevice.canBus(ui8_bus).mi_channelHandle, ps_canMsg->ui32_id, payload, payloadSize, canMSG_EXT)
-                                    : canWrite(ss_canDevice.canBus(ui8_bus).mi_channelHandle, ps_canMsg->ui32_id, payload, payloadSize, 0);
+    status = ps_canMsg->i32_msgType ? canWrite(ss_canDevice.canBus(ui8_bus).mi_channelHandle, ps_canMsg->ui32_id, payload, ps_canMsg->i32_len, canMSG_EXT)
+                                    : canWrite(ss_canDevice.canBus(ui8_bus).mi_channelHandle, ps_canMsg->ui32_id, payload, ps_canMsg->i32_len, 0);
 
     if (status != canOK)
     {
@@ -362,7 +364,9 @@ bool readFromBus(uint8_t ui8_bus, canMsg_s* ps_canMsg, server_c* pc_serverData)
         return 1;
     }*/
     status = canRead(ss_canDevice.canBus(ui8_bus).mi_channelHandle, &id, payload, &payloadSize, &flags, &timestamp);
-    if (status != canERR_NOMSG)
+
+    if (   (status != canERR_NOMSG)
+        && (status != canOK))
     {
         printErrorStatus((char*)"canRead", (canStatus)status);
         return false;
