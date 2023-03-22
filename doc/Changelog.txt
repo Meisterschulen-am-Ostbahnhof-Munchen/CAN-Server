@@ -1,41 +1,61 @@
 =============================== COMMON ===============================
 
-2018-05-14 Version 2.1.0    Julian Fichtner     julian.fichtner@osb-connagtive.com
+2023-03-22 Version 2.2.0    Markus Schiffmann    markus.schiffmann@osb-connagtive.com
+
+	* Enhanced printed output for "--usage", version set to 2.2.0
+		~ src/can_server_common.h / .cpp
+
+2018-05-14 Version 2.1.0    Julian Fichtner      julian.fichtner@osb-connagtive.com
 
 	* Added a version labeling. Started with version 2.1.0
 		~ can_server_common.h / .cpp
 		~ can_device_*.cpp
-		
+
 	* Added '--virtual' option for virtual busses
 		~ can_server_common.h / .cpp
 		~ can_server_sock.h / .cpp
 		~ can_device_*.cpp
 
-YYYY-MM-DD Version 2.0.0    Author              Contact data
+YYYY-MM-DD Version 2.0.0    Author               Contact data
 
 	* Changed the TCP/IP interface
 	  Attention: Incompatible with version 1.0.0
-		
-YYYY-MM-DD Version 1.0.0    Author              Contact data
+
+YYYY-MM-DD Version 1.0.0    Author               Contact data
 
 	* First release
-		
+
 =============================== NO CARD ==============================
 
-	2018-05-14 PATCH 0      Author              Contact data
+2018-05-14 PATCH 0          Author               Contact data
+
 	* No hardware specific changes yet
 
 ================================ PCAN ================================
 
-	2018-05-14 PATCH 0      Author              Contact data
+2023-03-22 Version 2.2.0    Markus Schiffmann    markus.schiffmann@osb-connagtive.com
+
+	* Now following baud rates supported
+	  (and abort implemented if not supported baud rate is used):
+	  5, 10, 20, 33, 47, 50, 83, 95, 100, 125, 250, 500, 800, 1000
+		~ src_devices/pcan/can_device_pcan.cpp
+
+	* README added, CMakeLists fixed for new PCAN-Basic library
+		~ prj/can_server_pcan/README.txt
+		~ prj/can_server_pcan/CMakeLists.txt
+
+2018-05-14 PATCH 0          Author               Contact data
+
 	* No hardware specific changes yet
 
 ============================= SONTHEIM MT ============================
 
-	2018-05-14 PATCH 0      Author              Contact data
+2018-05-14 PATCH 0          Author               Contact data
+
 	* No hardware specific changes yet
 
 ============================== VECTOR XL =============================
 
-	2018-05-14 PATCH 0      Author              Contact data
+2018-05-14 PATCH 0          Author               Contact data
+
 	* No hardware specific changes yet

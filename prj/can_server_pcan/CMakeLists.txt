@@ -32,7 +32,7 @@ if(WIN32)
   find_package(Threads REQUIRED)
   link_directories(
     "../../3rd/lib/pthread/lib"
-    ../../3rd/lib/pcan/Win32/VC_LIB)
+    ../../3rd/lib/pcan/x86/VC_LIB)
   set(ISOAGLIB_ADDITIONAL_LIBRARIES odbc32 odbccp32 winmm pthreadVC2 ws2_32 PCANBasic)
 else()
   set(ISOAGLIB_ADDITIONAL_LIBRARIES rt)

@@ -30,6 +30,8 @@
 #define HARDWARE "PCAN"
 #define HARDWARE_PATCH 0
 
+#define PCAN_BAUD_RATE_NOT_SUPPORTED 0U
+
 using namespace __HAL;
 
 static struct canDevice_s {
@@ -93,13 +95,39 @@ bool resetCard(void)
 #if WIN32
 TPCANBaudrate extractPcanBaudrate(uint32_t wBitrate)
 {
-  if(wBitrate == 250)
-    return PCAN_BAUD_250K;
-  if(wBitrate == 125)
-    return PCAN_BAUD_125K;
-
-  //default we set the baudrate to 250
-  return PCAN_BAUD_250K;
+  switch(wBitrate)
+  {
+    case 5:
+      return PCAN_BAUD_5K;
+    case 10:
+      return PCAN_BAUD_10K;
+    case 20:
+      return PCAN_BAUD_20K;
+    case 33:
+      return PCAN_BAUD_33K;
+    case 47:
+      return PCAN_BAUD_47K;
+    case 50:
+      return PCAN_BAUD_50K;
+    case 83:
+      return PCAN_BAUD_83K;
+    case 95:
+      return PCAN_BAUD_95K;
+    case 100:
+      return PCAN_BAUD_100K;
+    case 125:
+      return PCAN_BAUD_125K;
+    case 250:
+      return PCAN_BAUD_250K;
+    case 500:
+      return PCAN_BAUD_500K;
+    case 800:
+      return PCAN_BAUD_800K;
+    case 1000:
+      return PCAN_BAUD_1M;
+    default:
+      return PCAN_BAUD_RATE_NOT_SUPPORTED;
+  }
 }
 
 TPCANHandle extractChannelForUSB(uint8_t ui8_bus)
@@ -165,7 +193,13 @@ bool openBusOnCard(uint8_t ui8_bus, uint32_t wBitrate, server_c* pc_serverData)
   TPCANStatus status;
   TPCANHandle channel = extractChannelForUSB(ui8_bus);
   TPCANBaudrate baudrate = extractPcanBaudrate(wBitrate);
-  
+
+  if (baudrate == PCAN_BAUD_RATE_NOT_SUPPORTED)
+  {
+    std::cerr << "Connecting failed because baud rate " << std::dec << wBitrate << " kbit/s is not supported." << std::endl;
+    return false;
+  }
+
   status = CAN_Initialize(channel, baudrate, 0, 0, 0);
   if(status == PCAN_ERROR_OK)
   {

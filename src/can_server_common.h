@@ -27,7 +27,7 @@
 #include <yasper.h>
 
 #define MAJOR 2
-#define MINOR 1
+#define MINOR 2
 #define PATCH 0
 
 // Uncomment this define to substitute unavailable buses on the hardware by
