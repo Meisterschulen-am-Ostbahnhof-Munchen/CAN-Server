@@ -28,7 +28,7 @@
 #endif
 
 #define HARDWARE "PCAN"
-#define HARDWARE_PATCH 0
+#define HARDWARE_PATCH 1
 
 #define PCAN_BAUD_RATE_NOT_SUPPORTED 0U
 

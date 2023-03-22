@@ -506,7 +506,7 @@ std::string Option_c< OPTION_INITIAL_CAN_OPEN >::doGetSetting(__HAL::server_c &a
 template <>
 std::string Option_c< OPTION_INITIAL_CAN_OPEN >::doGetUsage() const
 {
-  return "  --init <can_bus>[,<baud_rate_kbit_s>]  Open specified CAN without active client (can be used multiple times)\n";
+  return "  --init <can_bus>[,<baud_rate>]  Open specified CAN without active client (can be used multiple times)\n";
 }
 
 template <>

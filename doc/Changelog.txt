@@ -1,10 +1,5 @@
 =============================== COMMON ===============================
 
-2023-03-22 Version 2.2.0    Markus Schiffmann    markus.schiffmann@osb-connagtive.com
-
-	* Enhanced printed output for "--usage", version set to 2.2.0
-		~ src/can_server_common.h / .cpp
-
 2018-05-14 Version 2.1.0    Julian Fichtner      julian.fichtner@osb-connagtive.com
 
 	* Added a version labeling. Started with version 2.1.0
@@ -33,7 +28,7 @@ YYYY-MM-DD Version 1.0.0    Author               Contact data
 
 ================================ PCAN ================================
 
-2023-03-22 Version 2.2.0    Markus Schiffmann    markus.schiffmann@osb-connagtive.com
+2023-03-22 PATCH 1          Markus Schiffmann    markus.schiffmann@osb-connagtive.com
 
 	* Now following baud rates supported
 	  (and abort implemented if not supported baud rate is used):
